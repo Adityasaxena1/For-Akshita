@@ -119,42 +119,32 @@ const no=$('no');
 //     setTimeout(()=>{no.style.position='static'},400);
 //   }
 // }
-
-const moveArea = 150;
-
 function dodge(e){
-  if(dodges >= 4) return;
-
-  e && e.preventDefault();
+  if(dodges>=4)return;
+  e&&e.preventDefault();
   dodges++;
 
-  no.style.position = 'fixed';
+  // change the text FIRST so we measure the final width
+  if(dodges>=4) no.textContent='I need more time';
 
-  const rect = no.getBoundingClientRect();
+  no.style.position='fixed';
 
-  // Current button position
-  const currentX = rect.left;
-  const currentY = rect.top;
+  const pad=16;
+  const vw=document.documentElement.clientWidth;   // real visible width
+  const vh=document.documentElement.clientHeight;  // real visible height
+  const w=no.offsetWidth, h=no.offsetHeight;
 
-  // Random movement within 150px
-  const x = currentX + (Math.random() - 0.5) * moveArea;
-  const y = currentY + (Math.random() - 0.5) * moveArea;
+  const maxL=Math.max(pad, vw-w-pad);
+  const maxT=Math.max(pad, vh-h-pad);
 
-  // Keep button inside viewport
-  const maxX = window.innerWidth - rect.width;
-  const maxY = window.innerHeight - rect.height;
+  no.style.left=(pad+Math.random()*(maxL-pad))+'px';
+  no.style.top =(pad+Math.random()*(maxT-pad))+'px';
 
-  no.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
-  no.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
-
-  if(dodges >= 4){
-    no.textContent = 'I need more time';
-
-    setTimeout(() => {
-      no.style.position = 'static';
-      no.style.left = '';
-      no.style.top = '';
-    }, 400);
+  if(dodges>=4){
+    setTimeout(()=>{
+      no.style.position='static';
+      no.style.left=no.style.top='';
+    },400);
   }
 }
   
