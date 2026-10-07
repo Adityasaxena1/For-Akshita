@@ -106,19 +106,53 @@ function report(answer){
 /* the "No" button gently dodges, then softens */
 let dodges=0;
 const no=$('no');
+// function dodge(e){
+//   if(dodges>=4)return;
+//   e&&e.preventDefault();
+//   dodges++;
+//   const pad=20,w=no.offsetWidth,h=no.offsetHeight;
+//   no.style.position='fixed';
+//   no.style.left=pad+Math.random()*(innerWidth-w-2*pad)+'px';
+//   no.style.top=pad+Math.random()*(innerHeight-h-2*pad)+'px';
+//   if(dodges>=4){
+//     no.textContent='I need more time';
+//     setTimeout(()=>{no.style.position='static'},400);
+//   }
+// }
+
 function dodge(e){
-  if(dodges>=4)return;
-  e&&e.preventDefault();
+  if(dodges >= 4) return;
+
+  e && e.preventDefault();
   dodges++;
-  const pad=20,w=no.offsetWidth,h=no.offsetHeight;
-  no.style.position='fixed';
-  no.style.left=pad+Math.random()*(innerWidth-w-2*pad)+'px';
-  no.style.top=pad+Math.random()*(innerHeight-h-2*pad)+'px';
-  if(dodges>=4){
-    no.textContent='I need more time';
-    setTimeout(()=>{no.style.position='static'},400);
+
+  const pad = 20;
+
+  // Make it fixed first so its actual rendered size is available
+  no.style.position = 'fixed';
+
+  const rect = no.getBoundingClientRect();
+
+  const maxX = Math.max(pad, window.innerWidth - rect.width - pad);
+  const maxY = Math.max(pad, window.innerHeight - rect.height - pad);
+
+  const x = pad + Math.random() * (maxX - pad);
+  const y = pad + Math.random() * (maxY - pad);
+
+  no.style.left = `${x}px`;
+  no.style.top = `${y}px`;
+
+  if(dodges >= 4){
+    no.textContent = 'I need more time';
+
+    setTimeout(() => {
+      no.style.position = 'static';
+      no.style.left = '';
+      no.style.top = '';
+    }, 400);
   }
 }
+  
 no.addEventListener('mouseenter',dodge);
 no.addEventListener('touchstart',dodge,{passive:false});
 no.addEventListener('click',()=>{
