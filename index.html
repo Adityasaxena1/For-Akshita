@@ -93,6 +93,16 @@ $('env').onclick=()=>{burst(innerWidth/2,innerHeight/2,18,'💗');i=0;show(1);re
 $('next').onclick=()=>{if(i<messages.length-1){i++;renderMsg()}else show(2)};
 $('again').onclick=()=>{i=0;show(1);renderMsg()};
 
+
+  const ENDPOINT = "https://formspree.io/f/mkjooqvw"; // your endpoint
+function report(answer){
+  fetch(ENDPOINT,{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({answer, time:new Date().toString()})
+  }).catch(()=>{});
+}
+
 /* the "No" button gently dodges, then softens */
 let dodges=0;
 const no=$('no');
@@ -112,11 +122,22 @@ function dodge(e){
 no.addEventListener('mouseenter',dodge);
 no.addEventListener('touchstart',dodge,{passive:false});
 no.addEventListener('click',()=>{
-  if(dodges>=4)$('note').textContent="That's okay. Take all the time you need. I'll be here. 🤍";
-  else dodge();
+  // if(dodges>=4)$('note').textContent="That's okay. Take all the time you need. I'll be here. 🤍";
+  // else dodge();
+  if(dodges>=4){
+  report("Akshita needs more time 🤍");
+  $('note').textContent="That's okay. Take all the time you need. I'll be here. 🤍";
+}
+else dodge();
 });
 
-$('yes').onclick=()=>{show(3);burst(innerWidth/2,innerHeight/2,70,'💖')};
+// $('yes').onclick=()=>{show(3);burst(innerWidth/2,innerHeight/2,70,'💖')};
+
+
+$('yes').onclick=()=>{
+  report("Akshita said YES, she forgave you 💗");
+  show(3); burst(innerWidth/2,innerHeight/2,70,'💖');
+};
 
 /* floating hearts + bursts */
 const cv=$('c'),ctx=cv.getContext('2d');
