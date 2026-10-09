@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>For Akshita 💌</title>
+<title>For Akshita</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{--bg1:#ffe3ec;--bg2:#e6dcff;--ink:#4a2c40;--soft:#8a6a7e;--card:rgba(255,255,255,.65);--accent:#e8537a;--accent2:#b06ab3;
@@ -58,14 +58,14 @@ button.ghost{background:var(--card);color:var(--ink);box-shadow:none;border:1px 
     <h2 style="font-size:1.9rem">Akshita, can you forgive me?</h2>
     <p class="sub" style="margin-top:.5rem">I'll work every day to earn back your trust.</p>
     <div class="row">
-      <button id="yes">Yes, I forgive you 💗</button>
+      <button id="yes">Yes, I forgive you</button>
       <button id="no" class="ghost">No</button>
     </div>
     <p class="note" id="note"></p>
   </section>
 
   <section class="scene" id="s3">
-    <div class="big">💞</div>
+    <div class="big"></div>
     <h1>Thank you, Akshita</h1>
     <p class="sub" style="font-size:1.1rem;line-height:1.7">You have no idea how happy this makes me.<br>I promise to listen more, to be better,<br>and to never take you for granted.</p>
     <button class="ghost" id="again">Read it again</button>
@@ -91,7 +91,7 @@ function renderMsg(){
   $('dots').innerHTML=messages.map((_,k)=>`<i class="${k===i?'a':''}"></i>`).join('');
   $('next').textContent=i===messages.length-1?'One last thing 💭':'Continue';
 }
-$('env').onclick=()=>{burst(innerWidth/2,innerHeight/2,18,'💗');i=0;show(1);renderMsg()};
+$('env').onclick=()=>{burst(innerWidth/2,innerHeight/2,18,'🌸');i=0;show(1);renderMsg()};
 $('next').onclick=()=>{if(i<messages.length-1){i++;renderMsg()}else show(2)};
 $('again').onclick=()=>{i=0;show(1);renderMsg()};
 
@@ -159,7 +159,7 @@ no.addEventListener('click',()=>{
   // else dodge();
   if(dodges>=4){
   report("Akshita needs more time 🤍");
-  $('note').textContent="That's okay. Take all the time you need. I'll be here. 🤍";
+  $('note').textContent="That's okay. Take all the time you need. I'll be here. :)";
 }
 else dodge();
 });
@@ -168,8 +168,8 @@ else dodge();
 
 
 $('yes').onclick=()=>{
-  report("Akshita said YES, she forgave you 💗");
-  show(3); burst(innerWidth/2,innerHeight/2,70,'💖');
+  report("Akshita said YES, she forgave you 🌸");
+  show(3); burst(innerWidth/2,innerHeight/2,70,'🌸');
 };
 
 /* floating hearts + bursts */
