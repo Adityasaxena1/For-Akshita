@@ -176,7 +176,7 @@ const cv=$('c'),ctx=cv.getContext('2d');
 let P=[];
 function size(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
 addEventListener('resize',size);size();
-function floaty(){return{x:Math.random()*innerWidth,y:innerHeight+20,vx:(Math.random()-.5)*.4,vy:-(.4+Math.random()*.9),s:12+Math.random()*18,a:.25+Math.random()*.4,e:Math.random()<.5?'🌸':'🤍',life:1,g:0}}
+function floaty(){return{x:Math.random()*innerWidth,y:innerHeight+20,vx:(Math.random()-.5)*.4,vy:-(.4+Math.random()*.9),s:12+Math.random()*18,a:.25+Math.random()*.4,e:Math.random()<.5?'🌸':'🌼',life:1,g:0}}
 function burst(x,y,n,e){for(let k=0;k<n;k++){const a=Math.random()*6.28,v=3+Math.random()*7;P.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-2,s:16+Math.random()*20,a:1,e,life:1,g:.12})}}
 setInterval(()=>{if(P.length<45)P.push(floaty())},350);
 (function loop(){
